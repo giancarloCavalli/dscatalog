@@ -1,6 +1,7 @@
 package com.gcavalli.dscatalog.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gcavalli.dscatalog.dto.CategoryDTO;
+import com.gcavalli.dscatalog.entities.Category;
 import com.gcavalli.dscatalog.repositories.CategoryRepository;
+import com.gcavalli.dscatalog.services.exceptions.EntityNotFoundException;
 
 @Service
 public class CategoryService {
@@ -21,6 +24,13 @@ public class CategoryService {
 	public List<CategoryDTO> findAll() {
 		return repo.findAll()
 				.stream().map(x -> new CategoryDTO(x)).collect(Collectors.toList());
+	}
+
+	@Transactional
+	public CategoryDTO findById(Long id) {
+		Optional<Category> obj = repo.findById(id);
+		Category entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+		return new CategoryDTO(entity);
 	}
 	
 }
