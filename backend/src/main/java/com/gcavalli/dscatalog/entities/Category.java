@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.gcavalli.dscatalog.dto.CategoryDTO;
+
 @Entity
 @Table(name = "categories")
 public class Category implements Serializable {
