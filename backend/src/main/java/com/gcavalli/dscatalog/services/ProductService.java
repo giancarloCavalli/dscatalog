@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gcavalli.dscatalog.dto.ProductDTO;
+import com.gcavalli.dscatalog.entities.Category;
 import com.gcavalli.dscatalog.entities.Product;
+import com.gcavalli.dscatalog.repositories.CategoryRepository;
 import com.gcavalli.dscatalog.repositories.ProductRepository;
 import com.gcavalli.dscatalog.services.exceptions.DatabaseException;
 import com.gcavalli.dscatalog.services.exceptions.ResourceNotFoundException;
@@ -25,6 +27,9 @@ public class ProductService {
 	
 	@Autowired
 	private ProductRepository repo;
+	
+	@Autowired
+	private CategoryRepository Categoryrepo;
 	
 	//transactional garante que vai executar completamente ou nada. ReadOnly aumenta a performance dos selects (não da locking em operações de leitura).
 	@Transactional(readOnly = true)
@@ -43,18 +48,18 @@ public class ProductService {
 	@Transactional
 	public ProductDTO insert(ProductDTO dto) {
 		Product entity = new Product();
-		//TODO entity.setName(dto.getName());
+		copyDtoToEntity(dto, entity);
 		entity = repo.save(entity);
-		return new ProductDTO(entity);
+		return new ProductDTO(entity, entity.getCategories());
 	}
-	
+
 	@Transactional
 	public ProductDTO update(Long id, ProductDTO dto) {
 		try {
 			Product entity = repo.getOne(id);
-			// TODO entity.setName(dto.getName());
+			copyDtoToEntity(dto, entity);
 			entity = repo.save(entity);
-			return new ProductDTO(entity);
+			return new ProductDTO(entity, entity.getCategories());
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Id "+id+" not found");
 		}
@@ -73,6 +78,20 @@ public class ProductService {
 	public Page<ProductDTO> findAllPaged(PageRequest pageRequest) {
 		Page<Product> page = repo.findAll(pageRequest);
 		return page.map(x -> new ProductDTO(x));
+	}
+	
+	private void copyDtoToEntity(ProductDTO dto, Product entity) {
+		entity.setName(dto.getName());
+		entity.setDescription(dto.getDescription());
+		entity.setDate(dto.getDate());
+		entity.setImgUrl(dto.getImgUrl());
+		entity.setPrice(dto.getPrice());
+		
+		entity.getCategories().clear();
+		dto.getCategories().forEach(categoryDto -> {
+			Category category = Categoryrepo.getOne(categoryDto.getId());
+			entity.getCategories().add(category);
+		});
 	}
 	
 }
