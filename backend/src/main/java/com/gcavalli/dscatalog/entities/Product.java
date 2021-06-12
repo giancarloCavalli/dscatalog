@@ -52,56 +52,56 @@ public class Product implements Serializable {
 		this.imgUrl = imgUrl;
 		this.date = date;
 	}
-
-	protected Long getId() {
+	
+	public Long getId() {
 		return id;
 	}
 
-	protected void setId(Long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	protected String getName() {
+	public String getName() {
 		return name;
 	}
 
-	protected void setName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	protected String getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
-	protected void setDescription(String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	protected Double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	protected void setPrice(Double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
-	protected String getImgUrl() {
+	public String getImgUrl() {
 		return imgUrl;
 	}
 
-	protected void setImgUrl(String imgUrl) {
+	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
 
-	protected Instant getDate() {
+	public Instant getDate() {
 		return date;
 	}
 
-	protected void setDate(Instant date) {
+	public void setDate(Instant date) {
 		this.date = date;
 	}
 
-	protected Set<Category> getCategories() {
+	public Set<Category> getCategories() {
 		return categories;
 	}
 
