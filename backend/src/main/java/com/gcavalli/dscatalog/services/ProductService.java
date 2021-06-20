@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -75,8 +75,8 @@ public class ProductService {
 		}
 	}
 
-	public Page<ProductDTO> findAllPaged(PageRequest pageRequest) {
-		Page<Product> page = repo.findAll(pageRequest);
+	public Page<ProductDTO> findAllPaged(Pageable pageable) {
+		Page<Product> page = repo.findAll(pageable);
 		return page.map(x -> new ProductDTO(x));
 	}
 	
