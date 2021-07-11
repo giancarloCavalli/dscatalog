@@ -29,7 +29,7 @@ public class ProductService {
 	private ProductRepository repo;
 	
 	@Autowired
-	private CategoryRepository Categoryrepo;
+	private CategoryRepository categoryRepo;
 	
 	//transactional garante que vai executar completamente ou nada. ReadOnly aumenta a performance dos selects (não da locking em operações de leitura).
 	@Transactional(readOnly = true)
@@ -89,7 +89,7 @@ public class ProductService {
 		
 		entity.getCategories().clear();
 		dto.getCategories().forEach(categoryDto -> {
-			Category category = Categoryrepo.getOne(categoryDto.getId());
+			Category category = categoryRepo.getOne(categoryDto.getId());
 			entity.getCategories().add(category);
 		});
 	}
