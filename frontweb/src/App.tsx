@@ -6,7 +6,7 @@ function App() {
   return (
    <>
       <Navbar />
-      <h1>Olá mundito!</h1>
+      <h1>Olá Bootcamp crew!</h1>
    </>
   );
 }
