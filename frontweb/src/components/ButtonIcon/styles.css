@@ -2,3 +2,16 @@
   width: 260px;
   height: 50pxs;
 }
+
+@media (min-width: 576px) {
+  .btn-icon {
+    width: 420px;
+  }
+}
+
+@media (min-width: 992px) {
+  .btn-icon {
+    width: 520px;
+    height: 60px;
+  }
+}
