@@ -9,16 +9,21 @@ const Home = () => {
     <>
       <Navbar />
       <div className="home-container">
-         <div className="home-card">
-            <div className="home-content-container">
-               <h1>Conheça o melhor catálogo de produtos</h1>
-               <p>Ajudaremos você a encontrar os melhores produtos disponíveis</p>
-               <ButtonIcon />
+        <div className="home-card">
+          <div className="home-content-container">
+            <div>
+              <h1>Conheça o melhor catálogo de produtos</h1>
+              <p>
+                Ajudaremos você a encontrar os melhores produtos disponíveis no
+                mercado.
+              </p>
             </div>
-            <div className="home-image-container">
-               <MainImage />   
-            </div>
-         </div>
+            <ButtonIcon />
+          </div>
+          <div className="home-image-container">
+            <MainImage />
+          </div>
+        </div>
       </div>
     </>
   );
