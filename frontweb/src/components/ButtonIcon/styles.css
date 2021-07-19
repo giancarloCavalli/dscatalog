@@ -1,17 +1,20 @@
-.btn-icon {
-  width: 260px;
-  height: 50pxs;
+.btn-container {
+  display: flex;
+  height: 50px;
 }
 
-@media (min-width: 576px) {
-  .btn-icon {
-    width: 420px;
-  }
+.btn-container button {
+  text-transform: uppercase;
+  border-radius: 10px 0px 0px 10px;
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
-@media (min-width: 992px) {
-  .btn-icon {
-    width: 520px;
-    height: 60px;
-  }
+.btn-icon-container {
+  width: 50px;
+  background-color: #33569B;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px 10px 10px 0px;
 }
