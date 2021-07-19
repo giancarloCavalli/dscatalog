@@ -1,0 +1,9 @@
+.product-price-container {
+  display: flex;
+}
+
+.product-price-container span {
+  color: #9e9e9e;
+  margin-top: 3px;
+  padding-right: 4px;
+}
