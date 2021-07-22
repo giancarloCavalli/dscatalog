@@ -1,6 +1,7 @@
 package com.gcavalli.dscatalog.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,6 +17,15 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
+	@Value("${security.oauth2.client.client-id}")
+	private String clientId;
+	
+	@Value("${security.oauth2.client.client-secret}")
+	private String clientSecret;
+	
+	@Value("${jwt.duration}")
+	private Integer jwtDuration;
+	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
@@ -36,11 +46,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory()
-			.withClient("dscatalog") // this specifies the application name. Front-end, when trying to access the back-end, will have to provide its name and both have to match.
-			.secret(passwordEncoder.encode("dscatalog123")) //Later this will be registered in a configuration file
+			.withClient(clientId) // this specifies the application name. Front-end, when trying to access the back-end, will have to provide its name and both have to match.
+			.secret(passwordEncoder.encode(clientSecret)) 
 			.scopes("read", "write")
 			.authorizedGrantTypes("password")
-			.accessTokenValiditySeconds(60*60*24);
+			.accessTokenValiditySeconds(jwtDuration);
 	}
 
 	@Override
