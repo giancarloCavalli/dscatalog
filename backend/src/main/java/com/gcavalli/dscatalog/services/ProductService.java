@@ -38,7 +38,7 @@ public class ProductService {
 				.stream().map(x -> new ProductDTO(x)).collect(Collectors.toList());
 	}
 
-	@Transactional
+	@Transactional(readOnly = true)
 	public ProductDTO findById(Long id) {
 		Optional<Product> obj = repo.findById(id);
 		Product entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
@@ -65,6 +65,7 @@ public class ProductService {
 		}
 	}
 
+	@Transactional
 	public void delete(Long id) {
 		try {
 			repo.deleteById(id);
@@ -74,12 +75,21 @@ public class ProductService {
 			throw new DatabaseException("Integrity violation");
 		}
 	}
-
+	
+	@Transactional(readOnly = true)
 	public Page<ProductDTO> findAllPaged(Pageable pageable) {
 		Page<Product> page = repo.findAll(pageable);
 		return page.map(x -> new ProductDTO(x));
 	}
+
+	@Transactional(readOnly = true)
+	public Page<ProductDTO> findAllPaged(Pageable pageable, Long categoryId) {
+		Category category = (categoryId == 0) ? null : categoryRepo.getOne(categoryId);
+		Page<Product> page = repo.findAll(pageable, category);
+		return page.map(x -> new ProductDTO(x));
+	}
 	
+	@Transactional
 	private void copyDtoToEntity(ProductDTO dto, Product entity) {
 		entity.setName(dto.getName());
 		entity.setDescription(dto.getDescription());
