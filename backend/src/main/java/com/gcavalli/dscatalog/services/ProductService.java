@@ -76,12 +76,6 @@ public class ProductService {
 			throw new DatabaseException("Integrity violation");
 		}
 	}
-	
-	@Transactional(readOnly = true)
-	public Page<ProductDTO> findAllPaged(Pageable pageable) {
-		Page<Product> page = repo.findAll(pageable);
-		return page.map(x -> new ProductDTO(x));
-	}
 
 	@Transactional(readOnly = true)
 	public Page<ProductDTO> findAllPaged(Pageable pageable, Long categoryId, String name) {
