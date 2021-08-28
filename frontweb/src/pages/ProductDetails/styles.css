@@ -2,14 +2,13 @@
   margin: 10px;
   padding: 10px;
   letter-spacing: -0.060em;
-  border: 1px solid red;
+  min-height: 80vh;
 }
 
 .goback-container {
   font-size: 1em;
   text-transform: uppercase;
   margin-bottom: 15px;
-  border: 1px solid red;
 }
 
 .goback-container svg {
@@ -18,17 +17,21 @@
   transform: rotate(-180deg);
 }
 
-.img-container {
-  margin-bottom: 15px;
-}
-
 .img-container img {
-  border: 1px solid red;
   width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .name-price-container {
-  margin-bottom: 30px;
+  margin: 25px 0px;
+}
+
+.gray-border {
+  border: 1px solid #E1E1E1;
+  border-radius: 20px;
+  padding: 15px;
 }
 
 .description-container {
@@ -38,4 +41,47 @@
 
 .description-container p {
   margin-top: 15px;
+}
+
+@media (min-width: 576px) {
+  
+  .page-card {
+    margin: 2rem;
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  
+  .page-card {
+    margin: 3rem;
+    padding: 3rem;
+  }
+
+  .img-container img {
+    width: 45%;
+  }
+
+  .gray-border {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+    .page-card {
+    margin: 1.3rem;
+    padding: 1.5rem;
+  }
+
+  .description-container {
+    height: 100%;
+  }
+
+  .gray-border {
+    padding: 1.4rem 1.2rem;
+  }
+
+  .name-price-container {
+    margin: 25px 0px 10px 0px;
+  }
 }

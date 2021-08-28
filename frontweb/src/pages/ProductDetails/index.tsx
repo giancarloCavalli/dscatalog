@@ -13,17 +13,19 @@ const ProductDetails = () => {
         </div>
         <div className="row">
           <div className="col-xl-6">
-            <div className="img-container">
+            <div className="img-container gray-border">
               <img src="https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/1-big.jpg" alt="product name" />
             </div>  
-            <div className="name-price-container">
-              <h1>Nome do Produto</h1>
-              <ProductPrice price={90.85} />
+            <div className="name-price-container d-lg-flex flex-xl-column">
+              <h1 className="col-lg-9">Nome do Produto</h1>
+              <span className="col-lg-6">
+                <ProductPrice price={90.85} />
+              </span>
             </div>
           </div>
           <div className="col-xl-6">
-            <div className="description-container">
-              <h5>Descrição do produto</h5>
+            <div className="description-container gray-border">
+              <h6>Descrição do produto</h6>
               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui, ratione.</p>
             </div>
           </div>
