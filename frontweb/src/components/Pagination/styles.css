@@ -1,0 +1,39 @@
+.component-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-item {
+  width: 40px;
+  height: 40px;
+  background-color: #E1E1E1;
+  border-radius: 50%;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 5px;
+}
+
+.pagination-item.active {
+  background-color: var(--primary);
+}
+
+.arrow-previous {
+  transform: rotate(-180deg);
+  margin-right: 10px;
+}
+
+.arrow-next {
+  margin-left: 10px;
+}
+
+.arrow-inactive {
+  color: #E1E1E1;
+}
+
+.arrow-active {
+  color: var(--primary);
+}
