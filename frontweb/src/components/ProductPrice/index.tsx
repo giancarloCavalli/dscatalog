@@ -1,3 +1,4 @@
+import { currencyBR } from 'util/formatters';
 import './styles.css';
 
 type Props = {
@@ -8,7 +9,7 @@ const ProductPrice = ({ price }: Props) => {
   return (
     <div className="product-price-container">
       <span>R$</span>
-      <h2 className="text-primary">{price}</h2>
+      <h2 className="text-primary">{currencyBR(price)}</h2>
     </div>
   );
 }
