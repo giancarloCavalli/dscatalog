@@ -12,9 +12,10 @@
 
 .btn-icon-container {
   width: 50px;
-  background-color: #33569B;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 0px 10px 10px 0px;
+  background-color: #33569B;
+  color: white;
 }

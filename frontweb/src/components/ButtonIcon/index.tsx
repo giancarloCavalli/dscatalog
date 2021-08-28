@@ -1,6 +1,6 @@
 import './styles.css';
 
-import ArrowIcon from 'assets/images/arrow.svg';
+import { ReactComponent as ArrowIcon } from 'assets/images/arrow.svg';
 
 type Props = {
   text: string;
@@ -13,7 +13,7 @@ const ButtonIcon = ({ text }: Props) => {
         {text}
       </button>
       <div className="btn-icon-container">
-        <img src={ArrowIcon} alt="Seta do botão de busca" />
+        <ArrowIcon />
       </div>
     </div>
   );
