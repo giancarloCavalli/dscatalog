@@ -5,5 +5,10 @@
 @media (min-width:1200px) {
   .page-content {
     flex: 1;
+    padding: 15px;
+  }
+
+  .page-container {
+    padding: 0;
   }
 }

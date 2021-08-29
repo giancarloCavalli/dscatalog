@@ -6,8 +6,8 @@ ul {
   padding: 0;
 }
 
-.adm-nav-container {
-
+li {
+  min-width: 27%;
 }
 
 .adm-nav-item {
@@ -30,4 +30,29 @@ ul {
 
 .adm-nav-item p {
   margin-bottom: 0;
+}
+
+@media (min-width:992px) {
+  .adm-nav-item {
+    font-size: 1.15rem;
+  }
+}
+
+@media (min-width:1200px) {
+  ul {
+    justify-content: unset;
+    flex-direction: column;
+  }
+
+  .adm-nav-container {
+    width: 20%;
+}
+
+  .adm-nav-item {
+    border-radius: unset;
+    justify-content: start;
+    padding: 2.5rem;
+    background-color: white;
+    border-bottom: 1px solid #e1e1e1;
+  }
 }
