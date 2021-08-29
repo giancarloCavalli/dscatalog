@@ -1,15 +1,23 @@
+import './styles.css';
+
 const AdmNavbar = () => {
   return (
-    <nav>
+    <nav className="adm-nav-container">
       <ul>
         <li>
-          <p>Produtos</p>
+          <a href="link" className="adm-nav-item active">
+            <p>Produtos</p>
+          </a>
         </li>
         <li>
-          <p>Categorias</p>
+          <a href="http://" className="adm-nav-item">
+            <p>Categorias</p>
+          </a>
         </li>
         <li>
-          <p>Usuários</p>
+          <a href="http://" className="adm-nav-item">
+            <p>Usuários</p>
+          </a>
         </li>
       </ul>
     </nav>

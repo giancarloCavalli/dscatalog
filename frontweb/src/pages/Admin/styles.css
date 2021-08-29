@@ -1,0 +1,9 @@
+.page-container {
+  padding: 15px;
+}
+
+@media (min-width:1200px) {
+  .page-content {
+    flex: 1;
+  }
+}
