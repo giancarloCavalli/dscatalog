@@ -1,3 +1,4 @@
+import { Switch, Route } from "react-router-dom";
 import AdmNavbar from "./AdmNavbar";
 
 import "./styles.css";
@@ -7,7 +8,17 @@ const Admin = () => {
     <div className="page-container d-xl-flex flex-xl-row">
       <AdmNavbar />      
       <div className="page-content">
-        <h2>conteudo</h2>
+        <Switch>
+          <Route path="/admin/products">
+            <h2>Product CRUD</h2>
+          </Route>
+          <Route path="/admin/categories">
+            <h2>Category CRUD</h2>
+          </Route>
+          <Route path="/admin/users">
+            <h2>User CRUD</h2>
+          </Route>
+        </Switch>
       </div>
     </div>
   );

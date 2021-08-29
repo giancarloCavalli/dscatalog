@@ -1,4 +1,4 @@
-ul {
+.adm-nav-container ul {
   display: flex;
   justify-content: space-around;
   list-style-type: none;
@@ -6,7 +6,7 @@ ul {
   padding: 0;
 }
 
-li {
+.adm-nav-container li {
   min-width: 27%;
 }
 
