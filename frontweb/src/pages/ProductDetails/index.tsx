@@ -5,23 +5,32 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Product } from 'types/product';
 import { BASE_URL } from 'util/requests';
+import ProductDetailsLoader from './ProductDetailsLoader';
+import ProductInfoLoader from './ProductInfoLoader';
 
 import './styles.css';
 
 type UrlParams = {
   productId: string;
-}
+};
 
 const ProductDetails = () => {
-
   const { productId } = useParams<UrlParams>();
 
   const [product, setProduct] = useState<Product>();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
-    axios.get(`${BASE_URL}/products/${productId}`).then((response) => {
-      setProduct(response.data);
-    });
+    setIsLoading(true);
+    axios
+      .get(`${BASE_URL}/products/${productId}`)
+      .then((response) => {
+        setProduct(response.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [productId]);
 
   return (
@@ -35,26 +44,31 @@ const ProductDetails = () => {
         </Link>
         <div className="row">
           <div className="col-xl-6">
-            <div className="img-container gray-border">
-              <img
-                src={product?.imgUrl}
-                alt={product?.name}
-              />
-            </div>
-            <div className="name-price-container d-lg-flex flex-xl-column">
-              <h1 className="col-lg-9">{product?.name}</h1>
-              <span className="col-lg-6">
-                {product && <ProductPrice price={product?.price} />}
-              </span>
-            </div>
+            {isLoading ? (
+              <ProductInfoLoader />
+            ) : (
+              <>
+                <div className="img-container gray-border">
+                  <img src={product?.imgUrl} alt={product?.name} />
+                </div>
+                <div className="name-price-container d-lg-flex flex-xl-column">
+                  <h1 className="col-lg-9">{product?.name}</h1>
+                  <span className="col-lg-6">
+                    {product && <ProductPrice price={product?.price} />}
+                  </span>
+                </div>
+              </>
+            )}
           </div>
           <div className="col-xl-6">
-            <div className="description-container gray-border">
-              <h6>Descrição do produto</h6>
-              <p>
-                {product?.description}
-              </p>
-            </div>
+            {isLoading ? (
+              <ProductDetailsLoader />
+            ) : (
+              <div className="description-container gray-border">
+                <h6>Descrição do produto</h6>
+                <p>{product?.description}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
