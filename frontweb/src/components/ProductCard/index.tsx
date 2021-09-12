@@ -1,8 +1,7 @@
-import './styles.css';
-
-import ProductImg from 'assets/images/product.png';
 import ProductPrice from 'components/ProductPrice';
 import { Product } from 'types/product';
+
+import './styles.css';
 
 type Props = {
   product: Product;
