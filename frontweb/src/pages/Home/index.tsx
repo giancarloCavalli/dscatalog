@@ -1,7 +1,7 @@
 import { ReactComponent as MainImage } from 'assets/images/main-image.svg';
 import ButtonIcon from 'components/ButtonIcon';
 import { Link } from 'react-router-dom';
-import { getTokenData } from 'util/requests';
+import { getTokenData, isAuthenticated } from 'util/requests';
 
 import './styles.css';
 
