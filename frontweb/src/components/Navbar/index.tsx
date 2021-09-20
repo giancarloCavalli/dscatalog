@@ -3,6 +3,7 @@ import 'bootstrap/js/src/collapse.js';
 import { Link, NavLink } from 'react-router-dom';
 import {
   getTokenData,
+  hasAnyRoles,
   isAuthenticated,
   removeAuthData,
 } from 'util/requests';
@@ -11,7 +12,6 @@ import history from 'util/history';
 import { AuthContext } from 'AuthContext';
 
 const Navbar = () => {
-
   const { authContextData, setAuthContextData } = useContext(AuthContext);
 
   useEffect(() => {
@@ -56,26 +56,30 @@ const Navbar = () => {
           <ul className="navbar-nav offset-md-2 main-menu">
             <li>
               <NavLink to="/" activeClassName="active" exact>
-                HOME
+                Produtos
               </NavLink>
             </li>
             <li>
               <NavLink to="/products" activeClassName="active">
-                CATÁLOGO
+                Catálogo
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/admin" activeClassName="active">
-                ADMIN
-              </NavLink>
-            </li>
+            {hasAnyRoles(['ROLE_ADMIN']) && (
+              <li>
+                <NavLink to="/admin" activeClassName="active">
+                  Usuários
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
 
         <div className="nav-login-logout">
           {authContextData.authenticated ? (
             <>
-              <span className="nav-username">{authContextData.tokenData?.user_name}</span>
+              <span className="nav-username">
+                {authContextData.tokenData?.user_name}
+              </span>
               <a href="#logout" onClick={handleLogoutClick}>
                 LOGOUT
               </a>
