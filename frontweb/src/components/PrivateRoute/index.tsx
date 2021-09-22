@@ -1,5 +1,5 @@
 import { Redirect, Route } from 'react-router-dom';
-import { isAuthenticated } from 'util/requests';
+import { isAuthenticated } from 'util/auth';
  
 type Props = {
   children: React.ReactNode;
