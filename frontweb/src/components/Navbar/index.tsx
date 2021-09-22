@@ -53,18 +53,18 @@ const Navbar = () => {
           <ul className="navbar-nav offset-md-2 main-menu">
             <li>
               <NavLink to="/" activeClassName="active" exact>
-                Produtos
+                HOME
               </NavLink>
             </li>
             <li>
               <NavLink to="/products" activeClassName="active">
-                Catálogo
+                CATÁLOGO
               </NavLink>
             </li>
             {hasAnyRoles(['ROLE_ADMIN']) && (
               <li>
                 <NavLink to="/admin" activeClassName="active">
-                  Usuários
+                  ADMIN
                 </NavLink>
               </li>
             )}
