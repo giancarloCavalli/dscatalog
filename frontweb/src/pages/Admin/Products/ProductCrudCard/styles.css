@@ -34,3 +34,43 @@
   width: 45%;
   height: 40px;
 }
+
+@media(min-width:768px) {
+  .product-crud-card {
+    padding: 0 20px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .product-crud-card-buttons-container {
+    width: 20%;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+  }
+  
+  .product-crud-card-top-container img {
+    max-height: 20vh;
+  }
+  
+  .product-crud-card-button {
+    width: 100%;
+  }
+
+  .product-crud-card-description {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .product-crud-card-top-container {
+    padding: 0;
+      border-bottom: 0;
+  }
+}
+
+@media(min-width:992px) {
+  
+}
