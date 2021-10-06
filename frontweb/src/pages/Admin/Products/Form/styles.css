@@ -1,3 +1,43 @@
+.product-crud-form-title {
+  margin-bottom: 20px;
+}
+
 .product-crud-form-card-container {
   padding: 20px;
+}
+
+.product-crud-form-input {
+  margin-bottom: 15px;
+}
+
+.product-crud-form-inputs-container {
+  margin-bottom: 30px;  
+}
+
+.product-crud-form-buttons-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-crud-btn {
+  height: 50px;
+  border-radius: 10px;
+  width: 110px;
+}
+
+@media(min-width:576px) {
+  .product-crud-form-buttons-container {
+    justify-content: flex-end;
+  }
+
+  .product-crud-btn {
+    margin-left: 20px;
+    width: 230px;
+  }
+}
+
+@media(min-width:992px) {
+  .product-crud-form-input-last-item{
+    margin-bottom: 0;
+  }
 }
