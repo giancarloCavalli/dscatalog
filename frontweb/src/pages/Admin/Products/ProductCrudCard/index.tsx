@@ -1,4 +1,5 @@
 import ProductPrice from 'components/ProductPrice';
+import { Link } from 'react-router-dom';
 import { Product } from 'types/product';
 import CategoryBadge from '../CategoryBadge';
 
@@ -26,12 +27,16 @@ const ProductCrudCard = ({ product }: Props) => {
         </div>
       </div>
       <div className="product-crud-card-buttons-container">
-        <button className="btn btn-outline-danger product-crud-card-button">
-          EXCLUIR
-        </button>
-        <button className="btn btn-outline-secondary product-crud-card-button">
-          EDITAR
-        </button>
+        <Link to={`/`}>
+          <button className="btn btn-outline-danger product-crud-card-button">
+            EXCLUIR
+          </button>
+        </Link>
+        <Link to={`/admin/products/${product.id}`}>
+          <button className="btn btn-outline-secondary product-crud-card-button">
+            EDITAR
+          </button>
+        </Link>
       </div>
     </div>
   );
