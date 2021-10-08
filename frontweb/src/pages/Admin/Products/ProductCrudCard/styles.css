@@ -51,6 +51,7 @@
   
   .product-crud-card-top-container img {
     max-height: 20vh;
+    min-width: 150px;
   }
   
   .product-crud-card-button {
