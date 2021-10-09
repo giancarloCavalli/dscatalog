@@ -1,5 +1,5 @@
 import ProductPrice from 'components/ProductPrice';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Product } from 'types/product';
 import CategoryBadge from '../CategoryBadge';
 
@@ -10,6 +10,16 @@ type Props = {
 };
 
 const ProductCrudCard = ({ product }: Props) => {
+  const history = useHistory();
+
+  const handleEditar = () => {
+    history.push(`/admin/products/${product.id}`);
+  };
+
+  const handleExcluir = () => {
+    history.push(`/`);
+  };
+
   return (
     <div className="base-card product-crud-card">
       <div className="product-crud-card-top-container">
@@ -27,16 +37,18 @@ const ProductCrudCard = ({ product }: Props) => {
         </div>
       </div>
       <div className="product-crud-card-buttons-container">
-        <Link to={`/`}>
-          <button className="btn btn-outline-danger product-crud-card-button">
-            EXCLUIR
-          </button>
-        </Link>
-        <Link to={`/admin/products/${product.id}`}>
-          <button className="btn btn-outline-secondary product-crud-card-button">
-            EDITAR
-          </button>
-        </Link>
+        <button
+          className="btn btn-outline-danger product-crud-card-button"
+          onClick={handleExcluir}
+        >
+          EXCLUIR
+        </button>
+        <button
+          className="btn btn-outline-secondary product-crud-card-button"
+          onClick={handleEditar}
+        >
+          EDITAR
+        </button>
       </div>
     </div>
   );
