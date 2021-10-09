@@ -25,6 +25,21 @@
   width: 110px;
 }
 
+.product-crud-form-select__control {
+  border-radius: 10px !important; /*Its not recommended to use !important. Nevertheless, its acceptable using on third party components */
+  font-size: 1em;
+  color: #263238;
+  height: 50px;
+}
+
+.product-crud-form-select__placeholder {
+  color: #9E9E9E !important;
+}
+
+.product-crud-form-select__indicator-separator {
+  display: none;
+}
+
 @media(min-width:576px) {
   .product-crud-form-buttons-container {
     justify-content: flex-end;
