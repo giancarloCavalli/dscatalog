@@ -1,28 +1,55 @@
 import { AxiosRequestConfig } from 'axios';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { Product } from 'types/product';
 import { requestBackend } from 'util/requests';
 import './styles.css';
 
+type UrlParams = {
+  productId: string;
+};
+
 const Form = () => {
+  const { productId } = useParams<UrlParams>();
+
+  const isEditing = productId !== 'create';
+
   const history = useHistory();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<Product>();
 
-  const onSubmit = (formData: Product) => {
+  useEffect(() => {
+    if (isEditing) {
+      requestBackend({ url: `/products/${productId}` }).then((response) => {
+        const product = response.data as Product;
 
-    const data = { ...formData,
-      imgUrl:'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/25-big.jpg', 
-      categories: [ {id:1, name:""}]};
+        setValue('name', product.name);
+        setValue('price', product.price);
+        setValue('description', product.description);
+        setValue('imgUrl', product.imgUrl);
+        setValue('categories', product.categories);
+      });
+    }
+  }, [isEditing, productId, setValue]);
+
+  const onSubmit = (formData: Product) => {
+    const data = {
+      ...formData,
+      imgUrl: isEditing
+        ? formData.imgUrl
+        : 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/25-big.jpg',
+      categories: isEditing ? formData.categories : [{ id: 1, name: '' }],
+    };
 
     const config: AxiosRequestConfig = {
-      method: 'POST',
-      url: '/products',
+      method: isEditing ? 'PUT' : 'POST',
+      url: isEditing ? `/products/${productId}` : '/products',
       data,
       withCredentials: true,
     };
@@ -30,7 +57,7 @@ const Form = () => {
     requestBackend(config)
       .then((response) => {
         console.log(response.data);
-        history.push("/admin/products");
+        history.push('/admin/products');
       })
       .catch((error) => {
         console.log(error);
@@ -38,7 +65,7 @@ const Form = () => {
   };
 
   const handleCancel = () => {
-    history.push("/admin/products");
+    history.push('/admin/products');
   };
 
   return (
