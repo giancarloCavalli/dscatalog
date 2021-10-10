@@ -39,3 +39,8 @@
 .arrow-inactive {
   color: #E1E1E1;
 }
+
+.pagination-arrow-container {
+  display: flex;
+  align-items: center;
+}

@@ -19,9 +19,9 @@ const Pagination = ( { pageCount, range, onChange }: Props) => {
       breakClassName="pagination-item"
       activeLinkClassName="pagination-link-active"
       previousClassName="arrow-previous"
-      previousLabel={<ArrowIcon />}
+      previousLabel={<div className="pagination-arrow-container"><ArrowIcon /></div>}
       nextClassName="arrow-next"
-      nextLabel={<ArrowIcon />}
+      nextLabel={<div className="pagination-arrow-container"><ArrowIcon /></div>}
       disabledClassName="arrow-inactive"
 
       onPageChange={(items) => (onChange) ? onChange(items.selected) : {}} //items.select = page selected in React Paginate
