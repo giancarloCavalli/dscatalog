@@ -1,9 +1,6 @@
-.adm-nav-container ul {
+.adm-nav-items-container {
   display: flex;
   justify-content: space-around;
-  list-style-type: none;
-  margin: none;
-  padding: 0;
 }
 
 .adm-nav-container li {
@@ -39,7 +36,7 @@
 }
 
 @media (min-width:1200px) {
-  ul {
+  .adm-nav-items-container {
     justify-content: unset;
     flex-direction: column;
   }

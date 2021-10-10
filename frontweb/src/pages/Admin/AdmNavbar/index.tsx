@@ -5,7 +5,7 @@ import './styles.css';
 const AdmNavbar = () => {
   return (
     <nav className="adm-nav-container">
-      <ul>
+      <ul className="adm-nav-items-container">
         <li>
           <NavLink to="/admin/products" className="adm-nav-item">
             <p>Produtos</p>

@@ -21,19 +21,21 @@
   background-color: var(--primary);
 }
 
+.pagination-link-active {
+  background-color: var(--primary);
+}
+
 .arrow-previous {
   transform: rotate(-180deg);
   margin-right: 10px;
+  color: var(--primary);
 }
 
 .arrow-next {
   margin-left: 10px;
+  color: var(--primary);
 }
 
 .arrow-inactive {
   color: #E1E1E1;
-}
-
-.arrow-active {
-  color: var(--primary);
 }
