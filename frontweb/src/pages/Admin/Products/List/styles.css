@@ -9,12 +9,6 @@
   font-weight: bold;
 }
 
-.product-filter-container {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  padding: 10px;
-}
-
 @media (min-width: 768px) {
   .product-crud-bar-container {
     display: flex;
@@ -23,12 +17,5 @@
 
   .btn-crud-add {
     height: 60px;
-  }
-
-  .product-filter-container {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left: 15px;
-    flex: 1;
   }
 }

@@ -1,0 +1,32 @@
+.product-filter-container {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.product-filter-name-container {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #E1E1E1;
+}
+
+.product-filter-name-container input {
+  border: none;
+}
+
+.product-filter-name-container input:focus {
+  box-shadow: none;
+}
+
+.product-filter-name-container input::placeholder {
+  color: #9E9E9E;
+}
+
+@media (min-width: 768px) {
+  .product-filter-container {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+    flex: 1;
+  }
+}
