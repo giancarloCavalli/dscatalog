@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid #E1E1E1;
+  margin-bottom: 10px;
 }
 
 .product-filter-name-container input {
@@ -20,6 +21,53 @@
 
 .product-filter-name-container input::placeholder {
   color: #9E9E9E;
+}
+
+.product-filter-bottom-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-filter-btn-search-icon {
+  background-color: unset;
+  border: none;
+}
+
+.product-filter-category-container {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.product-filter-btn-word {
+  display: none;
+}
+
+.product-filter-clear-btn {
+  border-radius: 10px;
+  font-weight: bold;
+  color: #9E9E9E;
+  border: 1px solid #E1E1E1;
+}
+
+.product-filter-select__control {
+  border: none !important; /*Its not recommended to use !important. Nevertheless, its acceptable using on third party components */
+  border-bottom: 1px solid #E1E1E1 !important;
+  font-size: 1em;
+  color: #263238;
+}
+
+.product-filter-select__placeholder {
+  color: #9E9E9E !important;
+}
+
+.product-filter-select__indicator-separator {
+  display: none;
+}
+
+@media (min-width: 576px) {
+  .product-filter-btn-word {
+    display: unset;
+  }  
 }
 
 @media (min-width: 768px) {

@@ -13,7 +13,6 @@ type ProductFilterData = {
 };
 
 const ProductFilter = () => {
-
   const [selectCategories, setSelectCategories] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -27,14 +26,10 @@ const ProductFilter = () => {
       });
   }, []);
 
-  const {
-    register,
-    handleSubmit,
-    control
-  } = useForm<ProductFilterData>();
+  const { register, handleSubmit, control } = useForm<ProductFilterData>();
 
   const onSubmit = (formData: ProductFilterData) => {
-    console.log('ENVIOU',formData);
+    console.log('ENVIOU', formData);
   };
 
   return (
@@ -48,29 +43,30 @@ const ProductFilter = () => {
             placeholder="Nome do produto"
             name="name"
           />
-          <button>
+          <button className="product-filter-btn-search-icon">
             <SearchIcon />
           </button>
         </div>
         <div className="product-filter-bottom-container">
           <div className="product-filter-category-container">
-          <Controller
-                name="category"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    {...field}
-                    options={selectCategories}
-                    isClearable
-                    isSearchable
-                    classNamePrefix="product-crud-form-select"
-                    getOptionLabel={(category: Category) => category.name}
-                    getOptionValue={(category: Category) => String(category.id)}
-                  />
-                )}
-              />
+            <Controller
+              name="category"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={selectCategories}
+                  isClearable
+                  isSearchable
+                  placeholder="Categoria"
+                  classNamePrefix="product-filter-select"
+                  getOptionLabel={(category: Category) => category.name}
+                  getOptionValue={(category: Category) => String(category.id)}
+                />
+              )}
+            />
           </div>
-          <button className="btn btn-outline-secondary">LIMPAR FILTRO</button>
+          <button className="btn btn-outline-secondary product-filter-clear-btn">LIMPAR <span className="product-filter-btn-word">FILTRO</span></button>
         </div>
       </form>
     </div>
