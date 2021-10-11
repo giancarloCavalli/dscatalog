@@ -47,6 +47,7 @@
   font-weight: bold;
   color: #9E9E9E;
   border: 1px solid #E1E1E1;
+  padding: 10px;
 }
 
 .product-filter-select__control {
@@ -54,6 +55,7 @@
   border-bottom: 1px solid #E1E1E1 !important;
   font-size: 1em;
   color: #263238;
+  height: 45px;
 }
 
 .product-filter-select__placeholder {
@@ -71,10 +73,38 @@
 }
 
 @media (min-width: 768px) {
+  .product-filter-form {
+    display: flex;
+    justify-content: space-between;
+  } 
+
+  .product-filter-name-container {
+    margin-bottom: 0;
+    flex: 1;
+    margin-right: 30px;
+  }
+  
+  .product-filter-select__control {
+    height: unset;
+    min-width: 190px;
+  }
+
   .product-filter-container {
     margin-top: 0px;
     margin-bottom: 0px;
     margin-left: 15px;
     flex: 1;
+    padding: 10px 15px;
+  }
+
+  .product-filter-clear-btn {
+    padding: 5px;
+  }  
+}
+
+@media (min-width: 992px) {
+  .product-filter-select__control {
+    height: unset;
+    min-width: 210px;
   }
 }
