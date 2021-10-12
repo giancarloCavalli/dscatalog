@@ -9,7 +9,7 @@ import './styles.css';
 
 type ProductFilterData = {
   name: string;
-  category: Category;
+  category: Category | null;
 };
 
 const ProductFilter = () => {
@@ -26,11 +26,27 @@ const ProductFilter = () => {
       });
   }, []);
 
-  const { register, handleSubmit, control } = useForm<ProductFilterData>();
+  const { register, handleSubmit, setValue, getValues, control } = useForm<ProductFilterData>();
 
   const onSubmit = (formData: ProductFilterData) => {
     console.log('ENVIOU', formData);
   };
+
+  const handleFormClear = () => {
+    setValue('name', '');
+    setValue('category', null);
+  }
+
+  const handleCategoryChange = (value: Category) => {
+    setValue('category', value);
+
+    const obj: ProductFilterData = {
+      name: getValues('name'),
+      category: getValues('category')
+    }
+
+    console.log('ENVIOU', obj);
+  }
 
   return (
     <div className="base-card product-filter-container">
@@ -60,13 +76,14 @@ const ProductFilter = () => {
                   isSearchable
                   placeholder="Categoria"
                   classNamePrefix="product-filter-select"
+                  onChange={value => handleCategoryChange(value as Category)}
                   getOptionLabel={(category: Category) => category.name}
                   getOptionValue={(category: Category) => String(category.id)}
                 />
               )}
             />
           </div>
-          <button className="btn btn-outline-secondary product-filter-clear-btn">LIMPAR <span className="product-filter-btn-word">FILTRO</span></button>
+          <button onClick={handleFormClear} className="btn btn-outline-secondary product-filter-clear-btn">LIMPAR <span className="product-filter-btn-word">FILTRO</span></button>
         </div>
       </form>
     </div>

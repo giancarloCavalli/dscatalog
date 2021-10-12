@@ -107,4 +107,8 @@
     height: unset;
     min-width: 210px;
   }
+
+  .product-filter-clear-btn {
+    padding: 5px 30px;
+  }  
 }
