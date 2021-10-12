@@ -3,12 +3,13 @@ import ReactPaginate from 'react-paginate';
 import './styles.css';
 
 type Props = {
+  forcePage?: number,
   pageCount: number,
   range: number,
   onChange?: (pageNumber: number) => void;
 }
 
-const Pagination = ( { pageCount, range, onChange }: Props) => {
+const Pagination = ( { forcePage, pageCount, range, onChange }: Props) => {
   return (
     <ReactPaginate
       pageCount={pageCount}
@@ -23,7 +24,7 @@ const Pagination = ( { pageCount, range, onChange }: Props) => {
       nextClassName="arrow-next"
       nextLabel={<div className="pagination-arrow-container"><ArrowIcon /></div>}
       disabledClassName="arrow-inactive"
-
+      forcePage={forcePage}
       onPageChange={(items) => (onChange) ? onChange(items.selected) : {}} //items.select = page selected in React Paginate
     />
   );
