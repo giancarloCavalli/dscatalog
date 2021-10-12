@@ -7,12 +7,16 @@ import { SpringPage } from 'types/vendor/spring';
 import { requestBackend } from 'util/requests';
 import './styles.css';
 
-type ProductFilterData = {
-  name: string;
-  category: Category | null;
+export type ProductFilterData = {
+  name: string,
+  category: Category | null
 };
 
-const ProductFilter = () => {
+type Props = {
+  onSubmitFilter: (date: ProductFilterData) => void
+}
+
+const ProductFilter = ({ onSubmitFilter }: Props) => {
   const [selectCategories, setSelectCategories] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -29,7 +33,7 @@ const ProductFilter = () => {
   const { register, handleSubmit, setValue, getValues, control } = useForm<ProductFilterData>();
 
   const onSubmit = (formData: ProductFilterData) => {
-    console.log('ENVIOU', formData);
+    onSubmitFilter(formData);
   };
 
   const handleFormClear = () => {
@@ -45,7 +49,7 @@ const ProductFilter = () => {
       category: getValues('category')
     }
 
-    console.log('ENVIOU', obj);
+    onSubmitFilter(obj);
   }
 
   return (
