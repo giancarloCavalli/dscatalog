@@ -5,8 +5,9 @@ import {} from 'util/requests';
 import { useContext, useEffect } from 'react';
 import history from 'util/history';
 import { AuthContext } from 'AuthContext';
-import { getTokenData, hasAnyRoles, isAuthenticated } from 'util/auth';
+import { hasAnyRoles, isAuthenticated } from 'util/auth';
 import { removeAuthData } from 'util/storage';
+import { getTokenData } from 'util/token';
 
 const Navbar = () => {
   const { authContextData, setAuthContextData } = useContext(AuthContext);

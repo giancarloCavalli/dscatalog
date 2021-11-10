@@ -1,13 +1,5 @@
-import jwtDecode from 'jwt-decode';
-import { getAuthData } from './storage';
-
-export type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN'; //enum
-
-export type TokenData = {
-  exp: number,
-  user_name: string,
-  authorities: Role
-}
+import { Role } from 'types/role';
+import { getTokenData } from './token';
 
 export const hasAnyRoles = (roles: Role[]): boolean => {
   if (roles.length === 0)
@@ -19,14 +11,6 @@ export const hasAnyRoles = (roles: Role[]): boolean => {
     return roles.some(role => tokenData.authorities.includes(role));
 
   return false;
-}
-
-export const getTokenData = () : TokenData | undefined => {
-  try {
-    return jwtDecode(getAuthData().access_token) as TokenData;
-  } catch (error) {
-    return undefined;
-  }
 }
 
 export const isAuthenticated = (): boolean => {
