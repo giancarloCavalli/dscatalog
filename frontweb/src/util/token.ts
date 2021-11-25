@@ -5,7 +5,7 @@ import { getAuthData } from "./storage";
 export type TokenData = {
   exp: number,
   user_name: string,
-  authorities: Role
+  authorities: Role[]
 }
 
 export const getTokenData = () : TokenData | undefined => {
