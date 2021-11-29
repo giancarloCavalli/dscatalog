@@ -12,5 +12,15 @@ describe('ButtonIcon tests', () => {
   
     expect(screen.getByText(text)).toBeInTheDocument();
   });
+  
+  test('ButtonIcon should render arrow icon', () => {
+    const text = "Fazer login"
+  
+    render(
+      <ButtonIcon text={text} />
+    )
+  
+    expect(screen.getByTestId("arrow")).toBeInTheDocument();
+  });
 
 });
