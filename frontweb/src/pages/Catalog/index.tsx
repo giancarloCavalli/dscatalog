@@ -15,6 +15,8 @@ const Catalog = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const getProducts = (pageNumber: number) => {
+    let isApiSubscribed = true;
+
     const params: AxiosRequestConfig = {
       method: 'GET',
       url: '/products',
@@ -27,11 +29,17 @@ const Catalog = () => {
     setIsLoading(true);
     requestBackend(params)
       .then((response) => {
-        setPage(response.data);
+        if (isApiSubscribed) {
+          setPage(response.data);
+        }
       })
       .finally(() => {
         setIsLoading(false);
       });
+
+    return () => {
+      isApiSubscribed = false;
+    };
   }
 
   useEffect(() => {
@@ -57,7 +65,7 @@ const Catalog = () => {
         )}
       </div>
       <div className="row">
-        <Pagination pageCount={page ? page.totalPages : 0} range={2} 
+        <Pagination pageCount={page ? page.totalPages : 0} range={2}
           onChange={getProducts}
         />
       </div>
