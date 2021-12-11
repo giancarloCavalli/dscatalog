@@ -1,5 +1,8 @@
 {
   "name": "frontweb",
+  "jest": {
+    "watchPathIgnorePatterns": ["__tests__/helpers"]
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,6 +21,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.2",
     "jwt-decode": "^3.1.2",
+    "msw": "^0.36.1",
     "node-sass": "4.14.1",
     "qs": "^6.10.1",
     "react": "^17.0.2",
