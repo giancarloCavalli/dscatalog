@@ -13,9 +13,11 @@ import CardLoader from './CardLoader';
 const Catalog = () => {
   const [page, setPage] = useState<SpringPage<Product>>();
   const [isLoading, setIsLoading] = useState(false);
+  
+  let isApiSubscribed: boolean;
 
   const getProducts = (pageNumber: number) => {
-    let isApiSubscribed = true;
+    isApiSubscribed = true;
 
     const params: AxiosRequestConfig = {
       method: 'GET',
@@ -29,21 +31,19 @@ const Catalog = () => {
     setIsLoading(true);
     requestBackend(params)
       .then((response) => {
-        if (isApiSubscribed) {
-          setPage(response.data);
-        }
+        if (isApiSubscribed)
+        setPage(response.data);
       })
       .finally(() => {
-        setIsLoading(false);
+        if (isApiSubscribed)
+          setIsLoading(false);
       });
-
-    return () => {
-      isApiSubscribed = false;
-    };
   }
 
   useEffect(() => {
     getProducts(0);
+
+    return () => {isApiSubscribed = false};
   }, []);
 
   return (
