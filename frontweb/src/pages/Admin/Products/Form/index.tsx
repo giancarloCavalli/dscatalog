@@ -44,21 +44,25 @@ const Form = () => {
 
   useEffect(() => {
     if (isEditing) {
-      requestBackend({ url: `/products/${productId}` }).then((response) => {
-        const product = response.data as Product;
+      requestBackend({ url: `/products/${productId}` })
+        .then((response) => {
+          const product = response.data as Product;
 
-        setValue('name', product.name);
-        setValue('price', product.price);
-        setValue('description', product.description);
-        setValue('imgUrl', product.imgUrl);
-        setValue('categories', product.categories);
-      });
+          setValue('name', product.name);
+          setValue('price', product.price);
+          setValue('description', product.description);
+          setValue('imgUrl', product.imgUrl);
+          setValue('categories', product.categories);
+        })
+        .catch(error => {
+          
+        });
     }
   }, [isEditing, productId, setValue]);
 
   const onSubmit = (formData: Product) => {
 
-    const data = {...formData, price: String(formData.price).replace(',', '.')};
+    const data = { ...formData, price: String(formData.price).replace(',', '.') };
 
     const config: AxiosRequestConfig = {
       method: isEditing ? 'PUT' : 'POST',
@@ -96,9 +100,8 @@ const Form = () => {
                   required: 'Campo obrigatório',
                 })}
                 type="text"
-                className={`form-control base-input ${
-                  errors.name ? 'is-invalid' : ''
-                }`}
+                className={`form-control base-input ${errors.name ? 'is-invalid' : ''
+                  }`}
                 placeholder="Nome do produto"
                 name="name"
               />
@@ -132,16 +135,15 @@ const Form = () => {
             </div>
 
             <div className="product-crud-form-input">
-              <Controller 
+              <Controller
                 name="price"
-                rules={{required: 'Campo obrigatório'}}
+                rules={{ required: 'Campo obrigatório' }}
                 control={control}
                 render={({ field }) => (
-                  <CurrencyInput 
+                  <CurrencyInput
                     placeholder="Preço"
-                    className={`form-control base-input ${
-                      errors.name ? 'is-invalid' : ''
-                    }`}
+                    className={`form-control base-input ${errors.name ? 'is-invalid' : ''
+                      }`}
                     disableGroupSeparators={true} //disabled because otherwise it will mistake thousand format with decimal format
                     value={field.value}
                     onValueChange={field.onChange}
@@ -163,9 +165,8 @@ const Form = () => {
                   },
                 })}
                 type="text"
-                className={`form-control base-input ${
-                  errors.name ? 'is-invalid' : ''
-                }`}
+                className={`form-control base-input ${errors.name ? 'is-invalid' : ''
+                  }`}
                 placeholder="URL da imagem do produto"
                 name="imgUrl"
               />
@@ -180,9 +181,8 @@ const Form = () => {
               {...register('description', {
                 required: 'Campo obrigatório',
               })}
-              className={`form-control base-input h-auto ${
-                errors.name ? 'is-invalid' : ''
-              }`}
+              className={`form-control base-input h-auto ${errors.name ? 'is-invalid' : ''
+                }`}
               placeholder="Descrição"
               name="description"
             ></textarea>
