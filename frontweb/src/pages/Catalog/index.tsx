@@ -32,7 +32,7 @@ const Catalog = () => {
     requestBackend(params)
       .then((response) => {
         if (isApiSubscribed)
-        setPage(response.data);
+         setPage(response.data);
       })
       .finally(() => {
         if (isApiSubscribed)

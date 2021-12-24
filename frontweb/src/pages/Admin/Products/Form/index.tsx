@@ -32,32 +32,46 @@ const Form = () => {
   } = useForm<Product>();
 
   useEffect(() => {
+    let isApiSubscribed = true;
+
     requestBackend({ url: '/categories' })
       .then((response) => {
-        const page = response.data as SpringPage<Category>;
-        setSelectCategories(page.content);
+        if (isApiSubscribed) {
+          const page = response.data as SpringPage<Category>;
+          setSelectCategories(page.content);
+        }
       })
       .catch((error) => {
         console.log(error);
       });
+
+      return () => {isApiSubscribed = false};
+      
   }, []);
 
   useEffect(() => {
+    let isApiSubscribed = true;
+
     if (isEditing) {
       requestBackend({ url: `/products/${productId}` })
         .then((response) => {
-          const product = response.data as Product;
-
-          setValue('name', product.name);
-          setValue('price', product.price);
-          setValue('description', product.description);
-          setValue('imgUrl', product.imgUrl);
-          setValue('categories', product.categories);
+          if (isApiSubscribed) {
+            const product = response.data as Product;
+  
+            setValue('name', product.name);
+            setValue('price', product.price);
+            setValue('description', product.description);
+            setValue('imgUrl', product.imgUrl);
+            setValue('categories', product.categories);
+          }
         })
         .catch(error => {
-          
+
         });
     }
+
+    return () => {isApiSubscribed = false};
+
   }, [isEditing, productId, setValue]);
 
   const onSubmit = (formData: Product) => {
@@ -104,6 +118,7 @@ const Form = () => {
                   }`}
                 placeholder="Nome do produto"
                 name="name"
+                data-testid="name"
               />
               <div className="invalid-feedback d-block">
                 {errors.name?.message}
@@ -111,6 +126,7 @@ const Form = () => {
             </div>
 
             <div className="product-crud-form-input">
+              <label htmlFor="categories" className="d-none" >Categorias</label>
               <Controller
                 name="categories"
                 rules={{ required: true }}
@@ -124,6 +140,7 @@ const Form = () => {
                     placeholder="Categoria"
                     getOptionLabel={(category: Category) => category.name}
                     getOptionValue={(category: Category) => String(category.id)}
+                    inputId="categories"
                   />
                 )}
               />
@@ -147,6 +164,7 @@ const Form = () => {
                     disableGroupSeparators={true} //disabled because otherwise it will mistake thousand format with decimal format
                     value={field.value}
                     onValueChange={field.onChange}
+                    data-testid="price"
                   />
                 )}
               />
@@ -169,6 +187,7 @@ const Form = () => {
                   }`}
                 placeholder="URL da imagem do produto"
                 name="imgUrl"
+                data-testid="imgUrl"
               />
               <div className="invalid-feedback d-block">
                 {errors.imgUrl?.message}
@@ -185,6 +204,7 @@ const Form = () => {
                 }`}
               placeholder="Descrição"
               name="description"
+              data-testid="description"
             ></textarea>
             <div className="invalid-feedback d-block">
               {errors.description?.message}
