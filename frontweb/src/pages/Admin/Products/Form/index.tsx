@@ -2,8 +2,9 @@ import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
 import CurrencyInput from 'react-currency-input-field';
 import { useForm, Controller } from 'react-hook-form';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router-dom';
 import Select from 'react-select';
+import { toast } from 'react-toastify';
 import { Category } from 'types/category';
 import { Product } from 'types/product';
 import { SpringPage } from 'types/vendor/spring';
@@ -86,12 +87,12 @@ const Form = () => {
     };
 
     requestBackend(config)
-      .then((response) => {
-        console.log(response.data);
+      .then(() => {
+        toast.info("Produto cadastrado com sucesso");
         history.push('/admin/products');
       })
       .catch((error) => {
-        console.log(error);
+        toast.error("Erro ao cadastrar produto");
       });
   };
 
@@ -219,7 +220,7 @@ const Form = () => {
           >
             CANCELAR
           </button>
-          <button className="btn btn-primary product-crud-btn">SALVAR</button>
+          <button className="btn btn-primary product-crud-btn" >SALVAR</button>
         </div>
       </form>
     </div>
