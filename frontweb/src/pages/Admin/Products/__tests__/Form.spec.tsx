@@ -145,11 +145,14 @@ describe("Product form update tests", () => {
     const imgUrlInput = screen.getByTestId("imgUrl");
     const descriptionInput = screen.getByTestId("description");
 
+    const formElement = screen.getByTestId("form");
+
     await waitFor(() => {
       expect(nameInput).toHaveValue(productResponse.name);
       expect(priceInput).toHaveValue(String(productResponse.price).replace('.', ','));
       expect(imgUrlInput).toHaveValue(productResponse.imgUrl);
       expect(descriptionInput).toHaveValue(productResponse.description);
+      expect(formElement).toHaveFormValues({categories: productResponse.categories.map(x => String(x.id))});
     });
 
   });
