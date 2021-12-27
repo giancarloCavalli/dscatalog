@@ -1,6 +1,6 @@
 import Pagination from 'components/Pagination';
 import ProductCard from 'components/ProductCard';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Product } from 'types/product';
 import { SpringPage } from 'types/vendor/spring';
@@ -13,11 +13,11 @@ import CardLoader from './CardLoader';
 const Catalog = () => {
   const [page, setPage] = useState<SpringPage<Product>>();
   const [isLoading, setIsLoading] = useState(false);
-  
-  let isApiSubscribed: boolean;
 
-  const getProducts = (pageNumber: number) => {
-    isApiSubscribed = true;
+  const [isGetProductsSubscribed, setIsGetProductsSubscribed] = useState(false);
+
+  const getProducts = useCallback((pageNumber: number) => {
+    setIsGetProductsSubscribed(true);
 
     const params: AxiosRequestConfig = {
       method: 'GET',
@@ -31,20 +31,20 @@ const Catalog = () => {
     setIsLoading(true);
     requestBackend(params)
       .then((response) => {
-        if (isApiSubscribed)
+        if (isGetProductsSubscribed)
          setPage(response.data);
       })
       .finally(() => {
-        if (isApiSubscribed)
+        if (isGetProductsSubscribed)
           setIsLoading(false);
       });
-  }
+  }, [isGetProductsSubscribed]);
 
   useEffect(() => {
     getProducts(0);
 
-    return () => {isApiSubscribed = false};
-  }, []);
+    return () => {setIsGetProductsSubscribed(false)};
+  }, [getProducts]);
 
   return (
     <div className="container my-4">
